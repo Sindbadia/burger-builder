@@ -10,7 +10,14 @@ const controls = [
 	{ label: 'Meat', type: 'meat' },
 ]
 
-const buildControls = ({ ingredientAdded, ingredientRemoved, price, disabled }) => {
+const BuildControls = ({
+	ingredientAdded,
+	ingredientRemoved,
+	disabled,
+	purchasable,
+	price,
+	ordered,
+}) => {
 	return (
 		<div className={classes.BuildControls}>
 			<p>
@@ -25,8 +32,11 @@ const buildControls = ({ ingredientAdded, ingredientRemoved, price, disabled }) 
 					disabled={disabled[ctrl.type]}
 				/>
 			))}
+			<button onClick={ordered} className={classes.OrderButton} disabled={!purchasable}>
+				ORDER NOW
+			</button>
 		</div>
 	)
 }
 
-export default buildControls
+export default BuildControls
