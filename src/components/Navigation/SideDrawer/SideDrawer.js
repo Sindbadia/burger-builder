@@ -6,7 +6,7 @@ import Backdrop from '../../UI/Backdrop/Backdrop'
 
 import classes from './SideDrawer.module.css'
 
-const SideDrawer = ({ open, closed }) => {
+const SideDrawer = ({ open, closed, isAuth }) => {
 	let attachedClasses = [classes.SideDrawer, classes.Close]
 
 	if (open) {
@@ -21,7 +21,7 @@ const SideDrawer = ({ open, closed }) => {
 					<Logo />
 				</div>
 				<nav>
-					<NavigationItems />
+					<NavigationItems isAuth={isAuth} clicked={closed} />
 				</nav>
 			</div>
 		</Fragment>
