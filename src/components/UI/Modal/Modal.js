@@ -10,10 +10,6 @@ class Modal extends Component {
 		)
 	}
 
-	componentDidUpdate() {
-		// console.log('[Modal] DidUpdate')
-	}
-
 	render() {
 		const { children, show, modalClosed } = this.props
 

@@ -3,11 +3,6 @@ import React, { Component, Fragment } from 'react'
 import Button from '../../UI/Button/Button'
 
 class OrderSummary extends Component {
-	// This could be a functional component
-	// componentDidUpdate(prevProps, prevState) {
-	// 	console.log('[OrderSummary] DidUpdate')
-	// }
-
 	render() {
 		const { ingredients, price, purchaseContinued, purchaseCanceled } = this.props
 

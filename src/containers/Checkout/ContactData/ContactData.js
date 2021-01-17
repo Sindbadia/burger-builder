@@ -8,6 +8,7 @@ import Spinner from '../../../components/UI/Spinner/Spinner'
 import Input from '../../../components/UI/Input/Input'
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler'
 import * as actions from '../../../store/actions'
+import { checkValidity } from '../../../shared/utility'
 
 class ContactData extends Component {
 	state = {
@@ -106,38 +107,17 @@ class ContactData extends Component {
 			ingredients: this.props.ings,
 			price: this.props.price,
 			orderData: formData,
+			userId: this.props.userId,
 		}
 
-		this.props.onOrderBurger(order)
-	}
-
-	checkValidity(value, rules) {
-		let isValid = true
-
-		// if (!rules) {
-		// 	return true
-		// }
-
-		if (rules.required) {
-			isValid = value.trim() !== '' && isValid
-		}
-
-		if (rules.minLength) {
-			isValid = value.length >= rules.minLength && isValid
-		}
-
-		if (rules.maxLength) {
-			isValid = value.length <= rules.maxLength && isValid
-		}
-
-		return isValid
+		this.props.onOrderBurger(order, this.props.token)
 	}
 
 	inputChangedHandler = (event, inputIdentifier) => {
 		const updatedOrderForm = JSON.parse(JSON.stringify(this.state.orderForm))
 
 		updatedOrderForm[inputIdentifier].value = event.target.value
-		updatedOrderForm[inputIdentifier].valid = this.checkValidity(
+		updatedOrderForm[inputIdentifier].valid = checkValidity(
 			updatedOrderForm[inputIdentifier].value,
 			updatedOrderForm[inputIdentifier].validation,
 		)
@@ -198,12 +178,15 @@ const mapStateToProps = state => {
 		ings: state.burgerBuilder.ingredients,
 		price: state.burgerBuilder.totalPrice,
 		loading: state.order.loading,
+		token: state.auth.token,
+		userId: state.auth.userId,
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onOrderBurger: orderData => dispatch(actions.purchaseBurger(orderData)),
+		onOrderBurger: (orderData, token) =>
+			dispatch(actions.purchaseBurger(orderData, token)),
 	}
 }
 
