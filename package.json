@@ -1,10 +1,10 @@
 {
+	"homepage": "https://sindbadia.github.io/burger-builder",
 	"name": "burger-builder",
 	"author": "Sindbadia",
 	"description": "Burger Builder React App",
 	"license": "MIT",
-	"version": "0.1.0",
-	"private": true,
+	"version": "1.0.0",
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.11.4",
 		"@testing-library/react": "^11.1.0",
@@ -12,6 +12,7 @@
 		"axios": "^0.21.1",
 		"enzyme": "^3.11.0",
 		"enzyme-adapter-react-16": "^1.15.5",
+		"gh-pages": "^3.1.0",
 		"prop-types": "^15.7.2",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",
@@ -28,7 +29,9 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"predeploy": "yarn run build",
+		"deploy": "gh-pages -d build"
 	},
 	"eslintConfig": {
 		"extends": [
