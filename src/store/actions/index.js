@@ -2,11 +2,20 @@ export {
 	addIngredient,
 	removeIngredient,
 	initIngredients,
+	setIngredients,
 	fetchIngredientsFailed,
 } from './burgerBuilder'
-
-export { purchaseBurger, purchaseInit, fetchOrders } from './order'
-
+export {
+	purchaseBurger,
+	purchaseInit,
+	fetchOrders,
+	purchaseBurgerStart,
+	purchaseBurgerFail,
+	purchaseBurgerSuccess,
+	fetchOrdersSuccess,
+	fetchOrdersStart,
+	fetchOrdersFail,
+} from './order'
 export {
 	auth,
 	logout,
@@ -15,6 +24,6 @@ export {
 	logoutSucceed,
 	authStart,
 	authSuccess,
-	checkAuthTimeout,
 	authFail,
+	checkAuthTimeout,
 } from './auth'
