@@ -12,10 +12,12 @@ const Orders = lazy(() => import('./containers/Orders/Orders'))
 const Auth = lazy(() => import('./containers/Auth/Auth'))
 
 const App = props => {
+	const { isAuth, onTryAutoSignup } = props
+
 	useEffect(() => {
-		props.onTryAutoSignup()
+		onTryAutoSignup()
 		return () => {}
-	}, [])
+	}, [onTryAutoSignup])
 
 	let routes = (
 		<Switch>
@@ -24,7 +26,7 @@ const App = props => {
 			<Redirect to='/' />
 		</Switch>
 	)
-	if (props.isAuth) {
+	if (isAuth) {
 		routes = (
 			<Switch>
 				<Route path='/checkout' component={Checkout} />

@@ -8,19 +8,21 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 import * as actions from '../../store/actions'
 
 const Orders = props => {
-	useEffect(() => {
-		props.onFetchOrders(props.token, props.userId)
-		return () => {}
-	}, [])
+	const { onFetchOrders, token, userId, loading, orders } = props
 
-	let orders = <Spinner />
-	if (!props.loading) {
-		orders = props.orders.map(order => {
+	useEffect(() => {
+		onFetchOrders(token, userId)
+		return () => {}
+	}, [onFetchOrders, token, userId])
+
+	let ordersOut = <Spinner />
+	if (!loading) {
+		ordersOut = orders.map(order => {
 			return <Order key={order.id} ingredients={order.ingredients} price={order.price} />
 		})
 	}
 
-	return <div>{orders}</div>
+	return <div>{ordersOut}</div>
 }
 
 const mapStateToProps = state => {
